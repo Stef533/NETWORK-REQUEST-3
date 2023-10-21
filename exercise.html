@@ -1,0 +1,33 @@
+<html>
+  <body>
+    <div id="container" style="display: flex; align-items: center;"></div>
+  </body>
+</html>
+
+<script>
+async function resetTodoConId4() {
+  const url = 'https://jsonplaceholder.typicode.com/todos/4';
+
+  try {
+    const response = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ completed: true })
+    });
+
+    const datiResponse = await response.json();
+
+    const liElement = document.createElement('li');
+    liElement.textContent = datiResponse.title;
+
+    const todoList = document.querySelector('.todo-list');
+    todoList.appendChild(liElement);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+resetTodoConId4();
+</script>
